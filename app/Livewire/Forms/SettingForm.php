@@ -54,7 +54,7 @@ class SettingForm extends Form
             ])
         );
 
-        session()->flash('message', 'Update with success!');
+        toastr()->success('Updated with successfully!');
 
         return redirect()->route('setting', $id);
     }

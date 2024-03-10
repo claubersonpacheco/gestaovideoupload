@@ -27,11 +27,18 @@
             <!-- Page Heading -->
             <header>
                 <p class="mb-2 text-sm font-semibold text-blue-600"> Upload Video</p>
-                <h1 class="block text-2xl font-bold text-gray-800 sm:text-3xl dark:text-white">Video: {{ $name }} - {{ $guid }}</h1>
+                <h1 class="block text-2xl font-bold text-gray-800 sm:text-3xl dark:text-white">Video: {{ $name }} </h1>
                 <hr class="mt-5 mb-10">
             </header>
 
             <!-- End Page Heading -->
+            <div>
+                @if (session()->has('message'))
+                    <div class="alert alert-success">
+                        {{ session('message') }}
+                    </div>
+                @endif
+            </div>
 
             <form
 
@@ -134,13 +141,16 @@
                 </div>
             </form>
 
-            <div class="w-full h-5 bg-red-500 text-white">
 
-                <livewire:dashboard.video.webhook :guid="$guid" />
+            <div class="sm:col-span-3 space-y-4 mt-6">
+
+                <livewire:dashboard.video.listen-websocket :videoid="$id"/>
+
             </div>
         </div>
         <!-- End Card -->
     </div>
     <!-- End Card Section -->
 </div>
+
 

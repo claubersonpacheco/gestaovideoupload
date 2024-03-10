@@ -2,6 +2,7 @@
 
 namespace App\Observers;
 
+use App\Models\Setting;
 use App\Models\Video;
 use Illuminate\Support\Facades\Auth;
 
@@ -14,14 +15,5 @@ class VideoObserver
     {
         $video->user_id = Auth::user()->id;
     }
-
-    /**
-     * Handle the Video "updated" event.
-     */
-    public function updated(Video $video): void
-    {
-        //
-    }
-
 
 }

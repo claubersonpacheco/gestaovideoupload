@@ -20,6 +20,7 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
+
     ];
 
     /**
@@ -28,6 +29,7 @@ class EventServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Video::observe(VideoObserver::class);
+
     }
 
     /**

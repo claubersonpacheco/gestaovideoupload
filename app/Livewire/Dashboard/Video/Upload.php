@@ -2,9 +2,11 @@
 
 namespace App\Livewire\Dashboard\Video;
 
+use App\Events\VideoEvent;
 use App\Models\Video;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
@@ -38,14 +40,31 @@ class Upload extends Component
 
         $dbVideo = Video::find($this->record);
 
-        $dbVideo->uploadVideoFromBunny($dbVideo->guid, $file->getRealPath());
+        $return = $dbVideo->uploadVideoFromBunny($dbVideo->guid, $file->getRealPath());
 
-        $dbVideo->update([
-            'file_path' => $file->storeAs('videos', Str::uuid().'.'.$file->getClientOriginalExtension()),
-        ]);
 
-        //return redirect()->route('videos');
-        //$this->dispatch('render');
+        if($return->success === true) {
+
+            $existe = Storage::exists('/chunks/'.$file->getFilename());
+
+
+            if($existe === true){
+
+                $dbVideo->update([
+                    'file_path' => "https://iframe.mediadelivery.net/embed/" . $dbVideo->videoLibraryId . "/" . $dbVideo->guid
+                ]);
+
+                Storage::delete('/chunks/'.$file->getFilename());
+
+            }else{
+
+                dd("Arquivo nao existe");
+            }
+
+        }else{
+
+            dd('Erro ao enviar');
+        }
 
     }
 
@@ -78,7 +97,7 @@ class Upload extends Component
 
         return view('livewire.dashboard.video.upload', [
             'name' => $video->name,
-            'guid' => $video->guid,
+            'id' => $video->guid,
         ]);
     }
 

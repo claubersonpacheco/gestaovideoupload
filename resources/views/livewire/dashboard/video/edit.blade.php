@@ -52,33 +52,7 @@
                     </div>
                     <!-- End Col -->
 
-                    <div class="sm:col-span-3">
-                        <label for="collection" class="inline-block text-sm text-gray-800 mt-2.5 dark:text-gray-200">
-                            Collection
-                        </label>
-                    </div>
-                    <!-- End Col -->
 
-                    <div class="sm:col-span-9">
-                        <input id="collection" wire:model="form.collection" type="text" class="py-2 px-3 pe-11 block w-full border-gray-200 shadow-sm text-sm rounded-lg focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600" placeholder="Collection">
-                    </div>
-                    <x-input-error class="mt-2" :messages="$errors->get('form.collection')" />
-                    <!-- End Col -->
-
-
-
-
-                    <div class="sm:col-span-3">
-                        <label for="description" class="inline-block text-sm text-gray-800 mt-2.5 dark:text-gray-200">
-                            Description
-                        </label>
-                    </div>
-                    <!-- End Col -->
-
-                    <div class="sm:col-span-9">
-                        <textarea id="description" wire:model="form.description" class="py-2 px-3 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600" rows="6" placeholder="Type your message..."></textarea>
-                    </div>
-                    <x-input-error class="mt-2" :messages="$errors->get('form.description')" />
                     <!-- End Col -->
                 </div>
                 <!-- End Grid -->

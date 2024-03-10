@@ -17,8 +17,6 @@ class Index extends Component
 
     public $perPage = 25;
 
-    public $deleteId;
-
     #[Title('List Videos')]
     public function render()
     {
@@ -30,11 +28,16 @@ class Index extends Component
 
     public function delete($record)
     {
+
+
         $data = Video::findOrFail($record);
 
         $data->delVideo($data->guid);
 
+
         $data->delete();
+
+        toastr()->success('Deleted with successfully!');
 
         return redirect()->route('videos');
     }

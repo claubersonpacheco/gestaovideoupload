@@ -25,21 +25,34 @@
         <div class="bg-white rounded-xl shadow p-4 sm:p-7 dark:bg-slate-900">
 
             <!-- Page Heading -->
-            <header>
-                <p class="mb-2 text-sm font-semibold text-blue-600">View Video</p>
-                <h1 class="block text-2xl font-bold text-gray-800 sm:text-3xl dark:text-white">{{ $video->name }}</h1>
-                <hr class="mt-5 mb-10">
+            <header class="mb-10 px-6 py-4 grid gap-3 md:flex md:justify-between md:items-center border-b border-gray-200 dark:border-gray-700">
+
+
+                <div>
+                    <p class="mb-2 text-sm font-semibold text-blue-600">{{ __('View Video') }}</p>
+                    <h1 class="block text-2xl font-bold text-gray-800 sm:text-3xl dark:text-white">{{ $video->name }}</h1>
+
+                </div>
+                <div>
+                    <div class="inline-flex gap-x-2">
+
+
+                        <a class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
+                           href="{{ route('videos') }}">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 15 3 9m0 0 6-6M3 9h12a6 6 0 0 1 0 12h-3" />
+                            </svg>
+
+                            Return
+                        </a>
+                    </div>
+                </div>
+
             </header>
 
             <!-- End Page Heading -->
                 <div class="flex items-center inline-flex">
-{{--                <video width="480" height="360" controls>--}}
-{{--                    <source src="{{ route('getVideo', $video->id) }}" type="video/mp4">--}}
-{{--                    Your browser does not support the video tag.--}}
-{{--                </video>--}}
-
-
-                    <iframe width="480" height="360" class="w-full aspect-video" src="https://iframe.mediadelivery.net/embed/203798/39943563-291a-42aa-9106-802733493a39?autoplay=false&loop=false&muted=false&preload=true&responsive=true"></iframe>
+                    <iframe width="480" height="360" class="w-full aspect-video" src="{{ $video->file_path }}?autoplay=false&loop=false&muted=false&preload=true&responsive=true"></iframe>
                 </div>
         </div>
     </div>

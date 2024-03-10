@@ -14,18 +14,6 @@ class Video extends Model
     use HasFactory;
     use CreatedAt;
 
-    const QUEUED = 0;
-    const Processing = 1;
-    const Encoding = 2;
-    const Finished = 3;
-    const Resolution = 4;
-    const Failed = 5;
-    const PresignedUploadStarted = 6;
-    const PresignedUploadFinished = 7;
-    const PresignedUploadFailed = 8;
-    const CaptionsGenerated = 9;
-    const TitleOrDescriptionGenerated = 10;
-
     protected $guarded;
 
     public function user(): BelongsTo
@@ -60,8 +48,29 @@ class Video extends Model
         return $resultado;
     }
 
+    public function updateVideoInBunny($title, $guid){
+
+        $setup = Setting::find('1');
+
+        $client = new Client();
+
+        $response = $client->request('POST', 'https://video.bunnycdn.com/library/'.$setup->streamLibraryId.'/videos/'.$guid, [
+            'body' => '{"title":"'.$title.'"}',
+            'headers' => [
+                'AccessKey' => $setup->streamApiKey,
+                'accept' => 'application/json',
+                'content-type' => 'application/*+json',
+            ],
+        ]);
+
+        $resultado = json_decode($response->getBody()->getContents());
+
+        return $resultado;
+    }
+
     public function delVideo($guid)
     {
+
         $setup = Setting::find('1');
 
         $client = new Client();

@@ -1,14 +1,15 @@
 <?php
 
-namespace App\Livewire\Dashboard;
+namespace App\Livewire\Dashboard\Home;
 
 use Livewire\Attributes\Layout;
 use Livewire\Component;
+
 #[Layout('layouts.app')]
-class Home extends Component
+class Index extends Component
 {
     public function render()
     {
-        return view('livewire.dashboard.home');
+        return view('livewire.dashboard.home.index');
     }
 }
