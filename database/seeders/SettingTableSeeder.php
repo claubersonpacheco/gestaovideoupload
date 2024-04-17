@@ -17,6 +17,8 @@ class SettingTableSeeder extends Seeder
     {
         Setting::create([
             'name' => 'Gestao IDI',
+            'moodleToken' => '8e16d9ad4470a19e40fa0ed2ee25df73',
+            'moodleUrl' => 'http://ava.institutodeinteligencia.com.br/webservice/rest/server.php?'
         ]);
     }
 }

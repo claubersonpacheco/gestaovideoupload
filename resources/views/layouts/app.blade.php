@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'Laravel') }} - {{ $title ?? 'Dashboard' }}</title>
+        <title> {{ setting()->name }} - {{ $title ?? 'Dashboard' }}</title>
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
@@ -31,7 +31,7 @@
        </div>
    </main>
     <!-- End Content -->
+    @livewire('wire-elements-modal')
     <!-- ========== END MAIN CONTENT ========== -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     </body>
 </html>

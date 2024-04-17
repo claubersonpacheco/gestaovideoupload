@@ -5,28 +5,38 @@ namespace App\Livewire\Forms;
 use Livewire\Attributes\Validate;
 use Livewire\Form;
 use App\Models\Setting;
+use Livewire\WithFileUploads;
 
 class SettingForm extends Form
 {
+    use WithFileUploads;
 
     public ?Setting $setting;
 
     public $id;
 
+    #[Validate('nullable|image|max:2048')]
+    public $logo;
+
     #[Validate('required|min:5')]
     public $name = '';
 
-    #[Validate('min:5')]
+    #[Validate('nullable|min:5')]
     public $streamLibraryId = '';
 
-    #[Validate('min:5')]
+    #[Validate('nullable|min:5')]
     public $streamApiKey = '' ;
 
-    #[Validate('min:5')]
+    #[Validate('nullable|min:5')]
     public $streamUserApiKey = '';
 
 
-    public $logo = '';
+    #[Validate('nullable|min:5')]
+    public $moodleToken = '' ;
+
+    #[Validate('nullable|min:5')]
+    public $moodleUrl = '';
+
 
     public function setSetting(Setting $setting)
     {
@@ -36,26 +46,39 @@ class SettingForm extends Form
         $this->streamLibraryId = $setting->streamLibraryId;
         $this->streamApiKey = $setting->streamApiKey;
         $this->streamUserApiKey = $setting->streamUserApiKey;
-        $this->logo = $setting->logo;
+        $this->moodleToken = $setting->moodleToken;
+        $this->moodleUrl = $setting->moodleUrl;
 
     }
-
-
-
 
     public function update($id)
     {
 
         $this->validate();
 
-        $this->setting->update(
-            $this->only([
-                'name', 'streamLibraryId', 'streamApiKey', 'streamUserApiKey', 'logo',
-            ])
-        );
 
-        toastr()->success('Updated with successfully!');
+        if($this->logo){
+            $imgName = md5($this->logo . microtime()).'.'.$this->logo->extension();
 
-        return redirect()->route('setting', $id);
+            $this->logo->storeAs('images/logo', $imgName);
+
+            $this->setting->update(
+               [
+                    'name' => $this->name,
+                    'streamLibraryId' => $this->streamLibraryId ,
+                    'streamApiKey' => $this->streamApiKey,
+                    'streamUserApiKey' => $this->streamUserApiKey,
+                    'logo' => $imgName,
+                    'moodleToken' => $this->moodleToken,
+                    'moodleUrl' => $this->moodleUrl,
+                ]);
+
+            toastr()->success('Updated with successfully!');
+
+            return redirect()->route('setting', $id);
+
+        }
+
+
     }
 }
