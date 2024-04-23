@@ -75,7 +75,7 @@ class SettingForm extends Form
 
             toastr()->success('Updated with successfully!');
 
-            return redirect()->route('setting', $id);
+            return redirect()->route('setting.edit', $id);
 
         }
 

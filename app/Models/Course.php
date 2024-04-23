@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use GuzzleHttp\Client;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
+use Spatie\Permission\Models\Role;
 
 class Course extends Model
 {
@@ -24,6 +26,7 @@ class Course extends Model
     {
         return  $this->belongsToMany(User::class);
     }
+
 
     public static function findAllCourses(): array
     {
@@ -120,6 +123,49 @@ class Course extends Model
 
         return $resultado;
 
+    }
+
+    public function enrollementUserByCourse( $userid, $courseid, $roleid = 5){
+
+        $client = new Client();
+
+        $result = $client->request('GET', setting()->moodleUrl, [
+            'query' => [
+                'wstoken' => setting()->moodleToken,
+                'wsfunction' => 'enrol_manual_enrol_users',
+                'moodlewsrestformat' => 'json',
+                'enrolments[0][userid]' => $userid,
+                'enrolments[0][courseid]' => $courseid,
+                'enrolments[0][roleid]' => $roleid,
+                'enrolments[0][suspend]' => 0,
+
+
+            ]
+        ]);
+
+        $resultado = json_decode($result->getBody()->getContents());
+
+        return $resultado;
+    }
+
+    public function unrollementUserByCourse( $userid, $courseid){
+
+        $client = new Client();
+
+        $result = $client->request('GET', setting()->moodleUrl, [
+            'query' => [
+                'wstoken' => setting()->moodleToken,
+                'wsfunction' => 'enrol_manual_unenrol_users',
+                'moodlewsrestformat' => 'json',
+                'enrolments[0][userid]' => $userid,
+                'enrolments[0][courseid]' => $courseid,
+               // 'enrolments[0][roleid]' => 7,
+            ]
+        ]);
+
+        $resultado = json_decode($result->getBody()->getContents());
+
+        return $resultado;
     }
 
 

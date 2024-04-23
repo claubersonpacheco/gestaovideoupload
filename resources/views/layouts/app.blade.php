@@ -5,11 +5,16 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title> {{ setting()->name }} - {{ $title ?? 'Dashboard' }}</title>
+        <title>{{ setting()->name  }} - {{ $title ?? 'Dashboard' }}</title>
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+
+
+        <link href="{{ asset('vendor/bladewind/css/animate.min.css') }}" rel="stylesheet" />
+        <link href="{{ asset('vendor/bladewind/css/bladewind-ui.min.css') }}" rel="stylesheet" />
+        <script src="{{ asset('vendor/bladewind/js/helpers.js') }}"></script>
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -26,12 +31,15 @@
 
     <!-- Content -->
    <main>
+
+
        <div class="w-full pt-10 px-4 sm:px-6 md:px-8 lg:ps-72">
        {{ $slot }}
        </div>
    </main>
     <!-- End Content -->
+
     @livewire('wire-elements-modal')
-    <!-- ========== END MAIN CONTENT ========== -->
-    </body>
+
+  </body>
 </html>

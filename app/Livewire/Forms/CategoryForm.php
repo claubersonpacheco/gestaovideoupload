@@ -50,7 +50,7 @@ class CategoryForm extends Form
 
                 toastr()->success('Criado com sucesso no moodle!');
 
-                return redirect()->route('categories');
+                return redirect()->route('categories.index');
 
 
         }else{
@@ -73,7 +73,7 @@ class CategoryForm extends Form
 
         toastr()->success('Atualizado com sucesso!');
 
-        return redirect()->route('categories');
+        return redirect()->route('categories.index');
 
 
     }

@@ -72,7 +72,7 @@ class VideoForm extends Form
 
             toastr()->success('Atualizado com sucesso!');
 
-            return redirect()->route('videos');
+            return redirect()->route('videos.index');
 
 
         }else{

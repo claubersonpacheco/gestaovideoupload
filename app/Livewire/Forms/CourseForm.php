@@ -90,7 +90,7 @@ class CourseForm extends Form
 
             toastr()->success('Criado com sucesso no moodle!');
 
-            return redirect()->route('courses');
+            return redirect()->route('courses.index');
 
         }else{
 
@@ -119,7 +119,7 @@ class CourseForm extends Form
 
         toastr()->success('Atualizado com sucesso!');
 
-        return redirect()->route('courses');
+        return redirect()->route('courses.index');
 
 
     }

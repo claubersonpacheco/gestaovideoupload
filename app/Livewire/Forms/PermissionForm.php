@@ -16,11 +16,15 @@ class PermissionForm extends Form
     #[Validate('required|min:3|unique:permissions,name')]
     public $name = '';
 
+    #[Validate('required|min:3')]
+    public $description = '';
+
 
     public function setPermission(Permission $permission)
     {
         $this->permission = $permission;
         $this->name = $permission->name;
+        $this->description = $permission->description;
 
     }
 
@@ -30,12 +34,13 @@ class PermissionForm extends Form
 
         Permission::create([
                 'name' => $this->name,
+                'description' => $this->description
                 ]
             );
 
         toastr()->success('Criado com sucesso!');
 
-        return redirect()->route('permissions');
+        return redirect()->route('permissions.index');
 
     }
 
@@ -47,12 +52,13 @@ class PermissionForm extends Form
         $this->permission->update(
                 $this->only([
                     'name',
+                    'description'
                 ])
             );
 
         toastr()->success('Atualizado com sucesso!');
 
-        return redirect()->route('permissions');
+        return redirect()->route('permissions.index');
 
 
     }

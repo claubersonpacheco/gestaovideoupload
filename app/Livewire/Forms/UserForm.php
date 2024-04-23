@@ -41,11 +41,11 @@ class UserForm extends Form
 
         if(isset($this->user)){
             $rules['username'] = ['required','string', 'regex:/^\S*$/', 'max:2048', Rule::unique('users', 'username')->ignore($this->user)];
-            $rules['email'] = ['required', 'min:5', Rule::unique('users', 'email')->ignore($this->user)];
+            $rules['email'] = ['required',  'lowercase', Rule::unique('users', 'email')->ignore($this->user)];
 
         }else{
             $rules['username'] = ['required', 'string', 'regex:/^\S*$/', 'max:2048', Rule::unique('users', 'username')];
-            $rules['email'] = ['required', 'min:5', Rule::unique('users', 'email')];
+            $rules['email'] = ['required',  'lowercase', Rule::unique('users', 'email')];
         }
 
 
@@ -94,7 +94,7 @@ class UserForm extends Form
 
             toastr()->success('Criado com sucesso!');
 
-            return redirect()->route('users');
+            return redirect()->route('users.index');
         }else{
 
             toastr()->error('Esso ao criar Usuario!');
@@ -167,7 +167,7 @@ class UserForm extends Form
 
         toastr()->success('Atualizado com sucesso!');
 
-        return redirect()->route('users');
+        return redirect()->route('users.index');
 
     }
 

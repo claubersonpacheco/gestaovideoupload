@@ -21,6 +21,13 @@ class AdminTableSeeder extends Seeder
             'email' => 'caubinho@gmail.com',
             'email_verified_at' => now(),
             'password' => Hash::make('cau12345'),
+            'birth' => '1977-01-18',
+            'rg' => '6.470.098-7',
+            'cpf' => '123.456.789-00',
+            'address' => 'Rua 0001',
+            'number' => '1000',
+            'district' => 'Centro',
+            'city' => 'São Paulo',
         ]);
 
         $user->assignRole('master');
@@ -32,6 +39,13 @@ class AdminTableSeeder extends Seeder
             'email' => 'user@gmail.com',
             'email_verified_at' => now(),
             'password' => Hash::make('cau12345'),
+            'birth' => '1977-01-18',
+            'rg' => '6.470.098-7',
+            'cpf' => '123.456.789-00',
+            'address' => 'Rua 0001',
+            'number' => '1000',
+            'district' => 'Centro',
+            'city' => 'São Paulo',
         ]);
 
         $user2->assignRole('user');
