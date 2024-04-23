@@ -16,11 +16,11 @@ class AdminTableSeeder extends Seeder
     public function run(): void
     {
         $user = User::create([
-            'name' => 'Caubinho Admin',
-            'username' => 'caubinhopacheco',
-            'email' => 'caubinho@gmail.com',
+            'name' => 'Admin',
+            'username' => 'administrador',
+            'email' => 'admin@gmail.com',
             'email_verified_at' => now(),
-            'password' => Hash::make('cau12345'),
+            'password' => Hash::make('password'),
             'birth' => '1977-01-18',
             'rg' => '6.470.098-7',
             'cpf' => '123.456.789-00',
@@ -38,7 +38,7 @@ class AdminTableSeeder extends Seeder
             'mcode' => '',
             'email' => 'user@gmail.com',
             'email_verified_at' => now(),
-            'password' => Hash::make('cau12345'),
+            'password' => Hash::make('password'),
             'birth' => '1977-01-18',
             'rg' => '6.470.098-7',
             'cpf' => '123.456.789-00',
