@@ -50,62 +50,65 @@
 
             <!-- End Page Heading -->
 
+            {{--imagem--}}
+            <div class="grid sm:grid-cols-12 gap-2 sm:gap-6 pb-10">
+
+                <div class="sm:col-span-3">
+                    <label for="name" class="inline-block text-sm text-gray-800 mt-2.5 dark:text-gray-200">
+                        {{ __('Image') }}
+                    </label>
+                </div>
+                <!-- End Col -->
+                <div class="sm:col-span-9">
+                    <div class="sm:flex">
+
+                        @if($data->logo)
+                            <div class="relative inline-block">
+                                <img class="inline-block size-[80px] rounded-full" src="{{ asset('storage/images/logo/'.$data->logo) }}" alt="{{ $data->name }}">
+                                <span wire:click="deleteImage({{ $data->id }})" class="absolute bottom-0 end-0 block size-3.5">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
+                                    </svg>
+                                </span>
+                            </div>
+
+                        @else
+
+                            <div class="relative inline-block">
+
+
+
+                                <svg class="inline-block size-[80px] rounded-full" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                                </svg>
+
+                                <button wire:click="$dispatch('openModal', { component: 'dashboard.setting.image', arguments: { config: {{ $data->id }} }  })" >
+
+                                    <span class="absolute bottom-0 end-0 block size-3.5">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                                        </svg>
+                                    </span>
+
+                                </button>
+
+                            </div>
+
+                        @endif
+
+
+                    </div>
+
+                </div>
+                <!-- End Col -->
+
+                <!--end row-->
+            </div>
+            {{--end image--}}
+
             <form wire:submit.prevent="save" >
                 <!-- Grid -->
                 <div class="grid sm:grid-cols-12 gap-2 sm:gap-6">
-
-                    <div class="sm:col-span-3">
-                        <label for="name" class="inline-block text-sm text-gray-800 mt-2.5 dark:text-gray-200">
-                            {{ __('Logo') }}
-                        </label>
-                    </div>
-                    <!-- End Col -->
-                    <div class="sm:col-span-9">
-                        <div class="sm:flex">
-
-
-
-                            @if($data->logo)
-                                <img class="w-1/2 rounded-md" src="{{ asset('storage/images/logo/'.$data->logo) }}" alt="{{ $data->name }}">
-                            @else
-                                <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-image"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>
-                            @endif
-
-
-                        </div>
-
-                    </div>
-                    <!-- End Col -->
-                    <div class="sm:col-span-3">
-                        <label for="logo" class="inline-block text-sm text-gray-800 mt-2.5 dark:text-gray-200">
-                            {{ __('Buscar imagem') }}
-                        </label>
-                    </div>
-                    <!-- End Col -->
-                    <div class="sm:col-span-9">
-                        <div class="sm:flex">
-                            <div
-                                x-data="{ uploading: false, progress: 0 }"
-                                x-on:livewire-upload-start="uploading = true"
-                                x-on:livewire-upload-finish="uploading = false"
-                                x-on:livewire-upload-cancel="uploading = false"
-                                x-on:livewire-upload-error="uploading = false"
-                                x-on:livewire-upload-progress="progress = $event.detail.progress"
-                            >
-
-                                <input id="logo" wire:model="form.logo" type="file" class="py-2 px-3 pe-11 block w-full border-gray-200 shadow-sm text-sm rounded-lg focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600" >
-
-                                <!-- Progress Bar -->
-                                <div x-show="uploading">
-                                    <progress max="100" x-bind:value="progress"></progress>
-                                </div>
-                            </div>
-
-                        </div>
-                        <x-input-error class="mt-2" :messages="$errors->get('form.logo')" />
-                    </div>
-                    <!-- End Col -->
-
 
                     <div class="sm:col-span-3">
                         <label for="name" class="inline-block text-sm text-gray-800 mt-2.5 dark:text-gray-200">

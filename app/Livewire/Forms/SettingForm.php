@@ -15,8 +15,6 @@ class SettingForm extends Form
 
     public $id;
 
-    #[Validate('nullable|image|max:2048')]
-    public $logo;
 
     #[Validate('required|min:5')]
     public $name = '';
@@ -56,19 +54,12 @@ class SettingForm extends Form
 
         $this->validate();
 
-
-        if($this->logo){
-            $imgName = md5($this->logo . microtime()).'.'.$this->logo->extension();
-
-            $this->logo->storeAs('images/logo', $imgName);
-
             $this->setting->update(
                [
                     'name' => $this->name,
                     'streamLibraryId' => $this->streamLibraryId ,
                     'streamApiKey' => $this->streamApiKey,
                     'streamUserApiKey' => $this->streamUserApiKey,
-                    'logo' => $imgName,
                     'moodleToken' => $this->moodleToken,
                     'moodleUrl' => $this->moodleUrl,
                 ]);
@@ -77,7 +68,6 @@ class SettingForm extends Form
 
             return redirect()->route('setting.edit', $id);
 
-        }
 
 
     }
