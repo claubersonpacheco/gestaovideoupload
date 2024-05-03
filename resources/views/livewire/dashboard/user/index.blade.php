@@ -36,7 +36,7 @@
                                     {{ __('Users') }}
                                 </h2>
                                 <p class="text-sm text-gray-600 dark:text-gray-400">
-                                    {{ __('Add, edit and more') }}.
+                                    {{ __('Add, edit and more.') }}.
                                 </p>
                             </div>
 
