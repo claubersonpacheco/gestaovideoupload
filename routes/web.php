@@ -28,6 +28,7 @@ Route::prefix('dashboard')->middleware(['auth', 'verified'])->group(function () 
     Route::get('/videos/{id}/getVideo', [\App\Livewire\Dashboard\Video\Show::class, 'getVideo'])->name('video.getvideo');
     Route::get('/videos/{id}/show', \App\Livewire\Dashboard\Video\Show::class)->middleware('can:videos.show')->name('videos.show');
 
+
     Route::post('/livewire/upload', [\App\Livewire\Dashboard\Video\Upload::class, 'handleChunk'])->name('livewire.upload');
     Route::get('/videos/{id}/upload', \App\Livewire\Dashboard\Video\Upload::class)->middleware('can:videos.upload')->name('videos.upload');
     Route::get('/videos/{id}/edit', \App\Livewire\Dashboard\Video\Edit::class)->middleware('can:videos.edit')->name('videos.edit');
