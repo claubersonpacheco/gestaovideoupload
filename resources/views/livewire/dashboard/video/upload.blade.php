@@ -144,7 +144,7 @@
 
             <div class="sm:col-span-3 space-y-4 mt-6">
 
-                <livewire:admin.dashboard.listen-websocket :videoid="$id"/>
+                <livewire:dashboard.video.listen-websocket :videoid="$id"/>
 
             </div>
         </div>
