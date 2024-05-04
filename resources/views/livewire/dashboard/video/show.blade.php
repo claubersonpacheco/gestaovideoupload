@@ -14,7 +14,7 @@
         </a>
     </li>
     <li class="inline-flex items-center text-sm font-semibold text-gray-800 truncate dark:text-gray-200" aria-current="page">
-        View
+        Show
     </li>
 </ol>
 <!--end Breadcrumb-->
@@ -52,6 +52,8 @@
 
             <div class="md:w-1/2 sm:w-full mb-4">
                 <iframe width="480" height="360" class="w-full aspect-video" src="{{ $video->file_path }}?autoplay=false&loop=false&muted=false&preload=true&responsive=true"></iframe>
+
+                <iframe src="{{ $video->file_path }}?autoplay=false&loop=false&muted=false&preload=true&responsive=true" loading="lazy" style="border:0;position:absolute;top:0;height:100%;width:100%;" allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;" allowfullscreen="true"></iframe>
             </div>
 
 
