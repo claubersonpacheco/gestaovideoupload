@@ -51,7 +51,9 @@
         <div class="grid gap-2 md:flex justify-normal items-center">
 
             <div class="md:w-1/2 sm:w-full mb-4">
-                <iframe width="480" height="360" class="w-full aspect-video" src="{{ $video->file_path }}?autoplay=false&loop=false&muted=false&preload=true&responsive=true" loading="lazy" allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;" allowfullscreen="true"></iframe>
+                    <div class="relative" style="padding-top: 56.25%">
+                        <iframe class="absolute inset-0 w-full h-full aspect-video" src="{{ $video->file_path }}?autoplay=false&loop=false&muted=false&preload=true&responsive=true" loading="lazy" allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;" allowfullscreen="true"></iframe>
+                    </div>
             </div>
 
 
