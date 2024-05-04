@@ -66,7 +66,9 @@
 
                         <!-- Text -->
                         <label for="embed">Copie o código Embed</label>
-                        <textarea id="embed" rows="8" class="w-full block rounded-lg border-gray-300 border-2 dark:border-none dark:bg-neutral-600 py-[9px] px-3 pr-4 text-sm focus:border-blue-400 focus:ring-1 focus:ring-blue-400 focus:outline-none"><iframe src="{{ $video->file_path }}?autoplay=false&loop=false&muted=false&preload=true&responsive=true" loading="lazy" style="border:0;min-height:360px;width:100%;" allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;" allowfullscreen="true"></iframe></textarea>
+                        <textarea id="embed" rows="8" class="w-full block rounded-lg border-gray-300 border-2 dark:border-none dark:bg-neutral-600 py-[9px] px-3 pr-4 text-sm focus:border-blue-400 focus:ring-1 focus:ring-blue-400 focus:outline-none">
+                            <iframe height="315" src="{{ $video->file_path }}?autoplay=false&amp;loop=false&amp;muted=false&amp;preload=true&amp;responsive=true" loading="lazy" style="border:0; width:100%;" allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;" allowfullscreen="true"></iframe>
+                        </textarea>
 
 
 
