@@ -42,19 +42,17 @@ class Upload extends Component
 
         $return = $dbVideo->uploadVideoFromBunny($dbVideo->guid, $file->getRealPath());
 
+        if($return != null) {
 
-        if($return->success === true) {
+            $fileExist = file_exists(storage_path('app/chunks/'.$file->getFilename()));
 
-            $existe = Storage::exists('/chunks/'.$file->getFilename());
-
-
-            if($existe === true){
+            if($fileExist){
 
                 $dbVideo->update([
                     'file_path' => "https://iframe.mediadelivery.net/embed/" . $dbVideo->videoLibraryId . "/" . $dbVideo->guid
                 ]);
 
-                Storage::delete('/chunks/'.$file->getFilename());
+                Storage::delete('app/chunks/'.$file->getFilename());
 
             }else{
 
@@ -63,7 +61,7 @@ class Upload extends Component
 
         }else{
 
-            dd('Erro ao enviar');
+            dd('Erro ao enviar: '.$return);
         }
 
     }
