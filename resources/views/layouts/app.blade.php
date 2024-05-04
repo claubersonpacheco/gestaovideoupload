@@ -27,7 +27,7 @@
     <!-- ========== END HEADER ========== -->
 
     <!-- ========== MAIN CONTENT ========== -->
-    @include('layouts.sidebar')
+    @livewire('dashboard.sidebar.index')
 
     <!-- Content -->
    <main>

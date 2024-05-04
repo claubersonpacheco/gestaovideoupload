@@ -3,6 +3,7 @@
 namespace App\Livewire\Dashboard\Video;
 
 use App\Livewire\Forms\VideoForm;
+use App\Models\Folder;
 use App\Models\Video;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Rule;
@@ -21,7 +22,6 @@ class Create extends Component
         $this->form->store();
     }
 
-
     public function cancel()
     {
         return redirect()->route('videos.index');
@@ -29,6 +29,8 @@ class Create extends Component
 
     public function render()
     {
-        return view('livewire.dashboard.video.create');
+        $folders = Folder::all();
+
+        return view('livewire.dashboard.video.create', compact('folders'));
     }
 }

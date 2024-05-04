@@ -35,7 +35,7 @@
                 <div>
                     <div class="inline-flex gap-x-2">
                         <a class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-                           href="{{ route('videos.index') }}">
+                           href="javascript:window.history.back()">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M9 15 3 9m0 0 6-6M3 9h12a6 6 0 0 1 0 12h-3" />
                             </svg>
@@ -51,6 +51,26 @@
                 <form wire:submit.prevent="save">
                 <!-- Grid -->
                 <div class="grid sm:grid-cols-12 gap-2 sm:gap-6">
+
+                    <div class="sm:col-span-3">
+                        <label for="category" class="inline-block text-sm text-gray-800 mt-2.5 dark:text-gray-200">
+                            {{ __('Folder') }}
+                        </label>
+                    </div>
+                    <!-- End Col -->
+
+                    <div class="sm:col-span-9">
+                        <div class="sm:flex">
+                            <select wire:model="form.folder"  id="folder" class="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                <option selected>{{ __('Choose') }}</option>
+                                @foreach($folders as $folder)
+                                    <option value="{{ $folder->id }}">{{ $folder->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <x-input-error class="mt-2" :messages="$errors->get('form.folder')" />
+                    </div>
+                    <!-- End Col -->
 
 
                     <div class="sm:col-span-3">

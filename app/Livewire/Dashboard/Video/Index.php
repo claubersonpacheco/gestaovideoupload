@@ -21,7 +21,7 @@ class Index extends Component
     public function render()
     {
         return view('livewire.dashboard.video.index', [
-            'videos' => auth()->user()->videos()->search($this->search)->latest()->paginate($this->perPage)
+            'videos' => Video::search($this->search)->latest()->paginate($this->perPage)
         ]);
     }
 

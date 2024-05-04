@@ -2,6 +2,8 @@
 
 namespace App\Livewire\Forms;
 
+use App\Models\Folder;
+use Illuminate\Validation\Rule;
 use Livewire\Attributes\Validate;
 use Livewire\Form;
 use App\Models\Video;
@@ -11,9 +13,20 @@ class VideoForm extends Form
 
     public ?Video $video;
 
-
-    #[Validate('required|min:5|unique:videos,name')]
     public $name = '';
+
+    public $folder;
+
+    public function rules()
+    {
+        return [
+            'name' => [
+                'required',
+                Rule::unique('videos')->ignore($this->video),
+            ],
+            'folder' => 'required',
+        ];
+    }
 
 
     public function setVideo(Video $video)
@@ -22,6 +35,7 @@ class VideoForm extends Form
         $this->video = $video;
 
         $this->name = $video->name;
+        $this->folder = $video->folder_id;
 
 
     }
@@ -33,11 +47,13 @@ class VideoForm extends Form
 
         $bunnyVideo = new Video();
 
+
         $resBunny = $bunnyVideo->createVideoInBunny($this->name);
 
         if($resBunny->guid != "") {
             $return = Video::create([
                             'name' => $this->name,
+                            'folder_id' => $this->folder,
                             'guid' => $resBunny->guid,
                             'videoLibraryId' => $resBunny->videoLibraryId,
                         ]
@@ -60,14 +76,14 @@ class VideoForm extends Form
 
         $bunnyVideo = new Video();
 
-
         $resBunny = $bunnyVideo->updateVideoInBunny($this->name, $this->video->guid);
 
         if($resBunny->success === true) {
             $this->video->update(
-                $this->only([
-                    'name'
-                ])
+                    [
+                        'name' => $this->name,
+                        'folder_id' => $this->folder,
+                    ]
             );
 
             toastr()->success('Atualizado com sucesso!');

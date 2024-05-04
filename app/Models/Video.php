@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use GuzzleHttp\Client;
 USE GuzzleHttp\Psr7;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Video extends Model
 {
@@ -20,6 +21,11 @@ class Video extends Model
     {
         return $this->belongsTo(User::class);
 
+    }
+
+    public function folder(): BelongsTo
+    {
+        return $this->belongsTo(Folder::class);
     }
 
     public function scopeSearch($query, $value)

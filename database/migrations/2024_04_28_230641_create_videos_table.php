@@ -24,6 +24,9 @@ return new class extends Migration
             $table->string('type')->nullable();
             $table->string('thumbnail')->nullable();
 
+            $table->unsignedBigInteger('folder_id');
+            $table->foreign('folder_id')->references('id')->on('folders')->onDelete('cascade');
+
             $table->timestamps();
         });
     }

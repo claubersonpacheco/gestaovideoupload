@@ -54,7 +54,7 @@
                                             <path d="M2.63452 7.50001L13.6345 7.5M8.13452 13V2" stroke="currentColor"
                                                   stroke-width="2" stroke-linecap="round"/>
                                         </svg>
-                                        {{ __('New') }}
+                                        {{ __('Create new') }}
                                     </a>
                                 </div>
                             </div>
@@ -78,7 +78,7 @@
                                     <div class="flex items-center gap-x-2">
                                             <span
                                                 class="text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-gray-200">
-                                              {{ __('Nama') }}
+                                              {{ __('Name') }}
                                             </span>
                                     </div>
                                 </th>

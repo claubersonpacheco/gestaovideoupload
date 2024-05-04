@@ -24,6 +24,13 @@ Route::prefix('dashboard')->middleware(['auth', 'verified'])->group(function () 
     Route::get('/category/create', App\Livewire\Dashboard\Category\Create::class)->name('categories.create');
     Route::get('/category', App\Livewire\Dashboard\Category\Index::class)->name('categories.index');
 
+    //folders
+    Route::get('/folders/{id}/videos', App\Livewire\Dashboard\Folder\Video::class)->name('folders.videos');
+    Route::get('/folders/{id}/edit', App\Livewire\Dashboard\Folder\Edit::class)->name('folders.edit');
+    Route::get('/folders/create', App\Livewire\Dashboard\Folder\Create::class)->name('folders.create');
+    Route::get('/folders', App\Livewire\Dashboard\Folder\Index::class)->name('folders.index');
+
+
     //video
     Route::get('/videos/{id}/getVideo', [\App\Livewire\Dashboard\Video\Show::class, 'getVideo'])->name('video.getvideo');
     Route::get('/videos/{id}/show', \App\Livewire\Dashboard\Video\Show::class)->middleware('can:videos.show')->name('videos.show');

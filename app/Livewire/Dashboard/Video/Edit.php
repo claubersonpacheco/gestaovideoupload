@@ -4,6 +4,7 @@ namespace App\Livewire\Dashboard\Video;
 
 
 use App\Livewire\Forms\VideoForm;
+use App\Models\Folder;
 use App\Models\Video;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
@@ -17,11 +18,16 @@ class Edit extends Component
     public VideoForm $form;
 
 
+    public $folders;
+
+
     public function mount(int|string $id)
     {
         $video = Video::findOrFail($id);
 
         $this->form->setVideo($video);
+
+        $this->folders = Folder::all();
 
     }
 
