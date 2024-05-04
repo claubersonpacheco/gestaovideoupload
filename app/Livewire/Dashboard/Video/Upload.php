@@ -54,6 +54,8 @@ class Upload extends Component
 
                 Storage::delete('app/chunks/'.$file->getFilename());
 
+                return redirect()->route('videos.index');
+
             }else{
 
                 dd("Arquivo nao existe");
