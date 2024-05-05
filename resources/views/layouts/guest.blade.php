@@ -18,12 +18,12 @@
 <main>
     <div class="flex flex-col min-h-screen max-w-6xl mx-auto p-4">
         <div class="mt-5">
-        <a href="/">
-          <x-application-logo class="h-50 fill-current text-gray-500" />
-        </a>
+            <a href="/">
+              <x-application-logo class="h-30 fill-current text-gray-500" />
+            </a>
         </div>
 
-      {{ $slot }}
+          {{ $slot }}
 
 
     </div>
