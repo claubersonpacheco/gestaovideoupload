@@ -10,7 +10,7 @@ use App\Models\Video;
 class VideoForm extends Form
 {
 
-    public ?Video $video;
+    public ?Video $video = null;
 
     public $name = '';
 
