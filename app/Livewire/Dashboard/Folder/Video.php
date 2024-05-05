@@ -30,9 +30,7 @@ class Video extends Component
 
         $data = ModelVideo::findOrFail($id);
 
-        $res = $data->delVideo($data->guid);
-
-        dd($res);
+        $data->delVideo($data->guid);
 
         $data->delete();
 
