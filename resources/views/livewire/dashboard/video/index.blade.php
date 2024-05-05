@@ -2,18 +2,29 @@
     <!--Breadcrumb-->
     <ol class="flex items-center whitespace-nowrap" aria-label="Breadcrumb">
         <li class="inline-flex items-center">
-            <a class="flex items-center text-sm text-gray-500 hover:text-blue-600 focus:outline-none focus:text-blue-600 dark:focus:text-blue-500" href="{{ route('dashboard.index') }}">
+            <a class="flex items-center text-sm text-gray-500 hover:text-blue-600 focus:outline-none focus:text-blue-600 dark:focus:text-blue-500"
+               href="{{ route('dashboard.index') }}">
                 Home
             </a>
-            <svg class="flex-shrink-0 mx-2 overflow-visible h-4 w-4 text-gray-400 dark:text-neutral-600" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+            <svg class="flex-shrink-0 mx-2 overflow-visible h-4 w-4 text-gray-400 dark:text-neutral-600"
+                 xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m9 18 6-6-6-6"/>
+            </svg>
         </li>
         <li class="inline-flex items-center">
-            <a class="flex items-center text-sm text-gray-500 hover:text-blue-600 focus:outline-none focus:text-blue-600 dark:focus:text-blue-500" href="{{ route('videos.index') }}">
+            <a class="flex items-center text-sm text-gray-500 hover:text-blue-600 focus:outline-none focus:text-blue-600 dark:focus:text-blue-500"
+               href="{{ route('videos.index') }}">
                 Videos
-                <svg class="flex-shrink-0 mx-2 overflow-visible h-4 w-4 text-gray-400 dark:text-neutral-600" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+                <svg class="flex-shrink-0 mx-2 overflow-visible h-4 w-4 text-gray-400 dark:text-neutral-600"
+                     xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="m9 18 6-6-6-6"/>
+                </svg>
             </a>
         </li>
-        <li class="inline-flex items-center text-sm font-semibold text-gray-800 truncate dark:text-gray-200" aria-current="page">
+        <li class="inline-flex items-center text-sm font-semibold text-gray-800 truncate dark:text-gray-200"
+            aria-current="page">
             List
         </li>
     </ol>
@@ -21,6 +32,18 @@
 
     <!-- Table Section -->
     <div class="max-w-full  py-5 sm:px-6 lg:px-1 lg:py-7 mx-auto">
+
+        <div class="mb-10">
+            <h2 class="text-xl font-semibold text-gray-800 dark:text-gray-200">
+                Videos
+            </h2>
+            <p class="text-sm text-gray-600 dark:text-gray-400">
+                Add videos, edit and more.
+            </p>
+            <p class="text-sm text-gray-600 dark:text-gray-400">
+                Total: {{ $count }}
+            </p>
+        </div>
         <!-- Card -->
         <div class="flex flex-col">
 
@@ -30,20 +53,29 @@
                         class="bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden dark:bg-slate-900 dark:border-gray-700">
                         <!-- Header -->
                         <div
-                            class=" px-6 py-4 grid gap-3 md:flex md:justify-between md:items-center border-b border-gray-200 dark:border-gray-700">
-                            <div>
-                                <h2 class="text-xl font-semibold text-gray-800 dark:text-gray-200">
-                                    Videos
-                                </h2>
-                                <p class="text-sm text-gray-600 dark:text-gray-400">
-                                    Add videos, edit and more.
-                                </p>
-                                <p class="text-sm text-gray-600 dark:text-gray-400">
-                                    Total: {{ $count }}
-                                </p>
-                            </div>
+                            class="px-6 py-4 grid md:grid-cols-5 gap-3 md:flex md:justify-between md:items-center border-b border-gray-200 dark:border-gray-700">
 
-                            <div>
+                            <!-- Input -->
+                            <div class="md:w-2/6">
+                                <label for="hs-as-table-product-review-search" class="sr-only">Search</label>
+                                <div class="relative">
+                                    <input wire:model.live="search" type="text" id="hs-as-table-product-review-search"
+                                           name="hs-as-table-product-review-search"
+                                           class="py-2 px-3 ps-11 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
+                                           placeholder="Search">
+                                    <div class="absolute inset-y-0 start-0 flex items-center pointer-events-none ps-4">
+                                        <svg class="size-4 text-gray-400 dark:text-neutral-500"
+                                             xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                             fill="currentColor" viewBox="0 0 16 16">
+                                            <path
+                                                d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End Input -->
+
+                            <div class="col-span-1">
                                 <div class="inline-flex gap-x-2">
                                     <a class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
                                        href="#">
@@ -69,60 +101,62 @@
 
 
                             <thead class="bg-gray-50 dark:bg-slate-800">
-                            <tr class="min-w-full">
-                                <th scope="col" class="ps-6 py-3 text-start ">
-                                    <label for="hs-at-with-checkboxes-main" class="flex">
-                                        <input type="checkbox"
-                                               class="shrink-0 border-gray-300 rounded text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-600 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800"
-                                               id="hs-at-with-checkboxes-main">
-                                        <span class="sr-only">Checkbox</span>
-                                    </label>
-                                </th>
+                                <tr class="min-w-full">
+                                    <th scope="col" class="ps-6 py-3 text-start ">
+                                        <label for="hs-at-with-checkboxes-main" class="flex">
+                                            <input type="checkbox"
+                                                   class="shrink-0 border-gray-300 rounded text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-600 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800"
+                                                   id="hs-at-with-checkboxes-main">
+                                            <span class="sr-only">Checkbox</span>
+                                        </label>
+                                    </th>
 
-                                <th scope="col" class="ps-6 lg:ps-3 xl:ps-0 pe-6 py-3 text-start">
-                                    <div class="flex items-center gap-x-2">
+                                    <th scope="col" class="ps-6 lg:ps-3 xl:ps-0 pe-6 py-3 text-start">
+                                        <div class="flex items-center gap-x-2">
+                                                <span
+                                                    class="text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-gray-200">
+                                                  {{ __('Name') }}
+                                                </span>
+                                        </div>
+                                    </th>
+
+                                    <th scope="col" class="ps-6 lg:ps-3 xl:ps-0 pe-6 py-3 text-start">
+                                        <div class="flex items-center gap-x-2">
+                                                <span
+                                                    class="text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-gray-200">
+                                                  {{ __('Folder') }}
+                                                </span>
+                                        </div>
+                                    </th>
+
+
+                                    <th scope="col" class="px-6 py-3 text-start">
+                                        <div class="flex items-center gap-x-2">
+                                                <span
+                                                    class="text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-gray-200">
+                                                  {{ __('Url') }}
+                                                </span>
+                                        </div>
+                                    </th>
+
+
+                                    <th scope="col" class="px-6 py-3 text-start">
+                                        <div class="flex items-center gap-x-2">
                                             <span
                                                 class="text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-gray-200">
-                                              {{ __('Name') }}
+                                              Created At
                                             </span>
-                                    </div>
-                                </th>
+                                        </div>
+                                    </th>
 
-                                <th scope="col" class="ps-6 lg:ps-3 xl:ps-0 pe-6 py-3 text-start">
-                                    <div class="flex items-center gap-x-2">
+                                    <th scope="col" class=" px-6 py-3 text-start">
+                                        <div class="flex items-center gap-x-2">
                                             <span
                                                 class="text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-gray-200">
-                                              {{ __('Folder') }}
+                                              Actions
                                             </span>
-                                    </div>
-                                </th>
-
-
-                                <th scope="col" class="px-6 py-3 text-start">
-                                    <div class="flex items-center gap-x-2">
-                                            <span
-                                                class="text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-gray-200">
-                                              {{ __('Url') }}
-                                            </span>
-                                    </div>
-                                </th>
-
-
-                                <th scope="col" class="px-6 py-3 text-start">
-                                    <div class="flex items-center gap-x-2">
-                                        <span class="text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-gray-200">
-                                          Created At
-                                        </span>
-                                    </div>
-                                </th>
-
-                                <th scope="col" class=" px-6 py-3 text-start">
-                                    <div class="flex items-center gap-x-2">
-                                        <span class="text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-gray-200">
-                                          Actions
-                                        </span>
-                                    </div>
-                                </th>
+                                        </div>
+                                    </th>
                             </tr>
                             </thead>
 
@@ -170,7 +204,6 @@
                                     </td>
 
 
-
                                     <td class="h-px w-px whitespace-nowrap">
                                         <div class="px-6 py-3">
                                             <span class="text-sm text-gray-500">{{ $video->created_at }}</span>
@@ -180,41 +213,56 @@
                                         <div class="px-6 py-1.5">
 
                                             @if($video->file_path != "")
-                                            <a href="{{ route('videos.show', $video->id) }}" class="inline-flex items-center gap-x-1 text-sm text-blue-600 decoration-2 hover:underline font-medium dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
-                                                <!-- Icon -->
-                                                <span class="m-1 inline-flex justify-center items-center w-[46px] h-[46px] rounded-full border-4 border-gray-50 bg-gray-200 text-gray-800 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-200">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                                      <path stroke-linecap="round" stroke-linejoin="round" d="m15.75 10.5 4.72-4.72a.75.75 0 0 1 1.28.53v11.38a.75.75 0 0 1-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 0 0 2.25-2.25v-9a2.25 2.25 0 0 0-2.25-2.25h-9A2.25 2.25 0 0 0 2.25 7.5v9a2.25 2.25 0 0 0 2.25 2.25Z" />
+                                                <a href="{{ route('videos.show', $video->id) }}"
+                                                   class="inline-flex items-center gap-x-1 text-sm text-blue-600 decoration-2 hover:underline font-medium dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
+                                                    <!-- Icon -->
+                                                    <span
+                                                        class="m-1 inline-flex justify-center items-center w-[46px] h-[46px] rounded-full border-4 border-gray-50 bg-gray-200 text-gray-800 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-200">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                         viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                                         class="w-6 h-6">
+                                                      <path stroke-linecap="round" stroke-linejoin="round"
+                                                            d="m15.75 10.5 4.72-4.72a.75.75 0 0 1 1.28.53v11.38a.75.75 0 0 1-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 0 0 2.25-2.25v-9a2.25 2.25 0 0 0-2.25-2.25h-9A2.25 2.25 0 0 0 2.25 7.5v9a2.25 2.25 0 0 0 2.25 2.25Z"/>
                                                     </svg>
 
                                                 </span>
-                                                <!-- End Icon -->
-                                            </a>
+                                                    <!-- End Icon -->
+                                                </a>
                                             @endif
 
 
 
                                             @if($video->file_path === null)
-                                            <a class="inline-flex items-center gap-x-1 text-sm text-blue-600 decoration-2 hover:underline font-medium dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-                                               href="{{ route('videos.upload', $video->id) }}">
-                                                <!-- Icon -->
-                                                <span class="m-1 inline-flex justify-center items-center w-[46px] h-[46px] rounded-full border-4 border-gray-50 bg-gray-200 text-gray-800 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-200">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                                      <path stroke-linecap="round" stroke-linejoin="round" d="M12 16.5V9.75m0 0 3 3m-3-3-3 3M6.75 19.5a4.5 4.5 0 0 1-1.41-8.775 5.25 5.25 0 0 1 10.233-2.33 3 3 0 0 1 3.758 3.848A3.752 3.752 0 0 1 18 19.5H6.75Z" />
+                                                <a class="inline-flex items-center gap-x-1 text-sm text-blue-600 decoration-2 hover:underline font-medium dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
+                                                   href="{{ route('videos.upload', $video->id) }}">
+                                                    <!-- Icon -->
+                                                    <span
+                                                        class="m-1 inline-flex justify-center items-center w-[46px] h-[46px] rounded-full border-4 border-gray-50 bg-gray-200 text-gray-800 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-200">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                         viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                                         class="w-6 h-6">
+                                                      <path stroke-linecap="round" stroke-linejoin="round"
+                                                            d="M12 16.5V9.75m0 0 3 3m-3-3-3 3M6.75 19.5a4.5 4.5 0 0 1-1.41-8.775 5.25 5.25 0 0 1 10.233-2.33 3 3 0 0 1 3.758 3.848A3.752 3.752 0 0 1 18 19.5H6.75Z"/>
                                                     </svg>
 
 
                                                 </span>
-                                                <!-- End Icon -->
-                                            </a>
+                                                    <!-- End Icon -->
+                                                </a>
 
                                             @endif
-                                            <a title="Edit" class="inline-flex items-center gap-x-1 text-sm text-blue-600 decoration-2 hover:underline font-medium dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
+                                            <a title="Edit"
+                                               class="inline-flex items-center gap-x-1 text-sm text-blue-600 decoration-2 hover:underline font-medium dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
                                                href="{{ route('videos.edit', $video->id) }}">
                                                 <!-- Icon -->
-                                                <span class="m-1 inline-flex justify-center items-center w-[46px] h-[46px] rounded-full border-4 border-gray-50 bg-gray-200 text-gray-800 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-200">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                                      <path stroke-linecap="round" width="24" height="24" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
+                                                <span
+                                                    class="m-1 inline-flex justify-center items-center w-[46px] h-[46px] rounded-full border-4 border-gray-50 bg-gray-200 text-gray-800 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-200">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                         viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                                         class="w-6 h-6">
+                                                      <path stroke-linecap="round" width="24" height="24"
+                                                            stroke-linejoin="round"
+                                                            d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10"/>
                                                     </svg>
 
                                                 </span>
@@ -222,12 +270,16 @@
                                             </a>
 
                                             <a class="inline-flex items-center gap-x-1 text-sm text-blue-600 decoration-2 hover:underline font-medium dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-                                              wire:click="delete({{ $video->id }})"
-                                              wire:confirm="Are you sure you want to delete this post?">
+                                               wire:click="delete({{ $video->id }})"
+                                               wire:confirm="Are you sure you want to delete this post?">
                                                 <!-- Icon -->
-                                                <span class="m-1 inline-flex justify-center items-center w-[46px] h-[46px] rounded-full border-4 border-gray-50 bg-gray-200 text-gray-800 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-200">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                                      <path stroke-linecap="round" stroke-linejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
+                                                <span
+                                                    class="m-1 inline-flex justify-center items-center w-[46px] h-[46px] rounded-full border-4 border-gray-50 bg-gray-200 text-gray-800 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-200">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                         viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                                         class="w-6 h-6">
+                                                      <path stroke-linecap="round" stroke-linejoin="round"
+                                                            d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0"/>
                                                     </svg>
 
                                                 </span>
