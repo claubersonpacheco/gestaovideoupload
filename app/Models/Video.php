@@ -88,7 +88,10 @@ class Video extends Model
             ],
         ]);
 
-        return json_decode($response->getBody()->getContents());
+        $result = json_decode($response->getBody()->getContents());
+
+        return $result;
+
     }
 
 

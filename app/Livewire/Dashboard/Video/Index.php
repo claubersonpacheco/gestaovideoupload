@@ -26,14 +26,12 @@ class Index extends Component
     }
 
 
-    public function delete($record)
+    public function delete($id)
     {
 
-
-        $data = Video::findOrFail($record);
+        $data = Video::findOrFail($id);
 
         $data->delVideo($data->guid);
-
 
         $data->delete();
 

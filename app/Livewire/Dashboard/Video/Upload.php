@@ -54,7 +54,7 @@ class Upload extends Component
 
                 Storage::delete('app/chunks/'.$file->getFilename());
 
-                return redirect()->route('videos.index');
+                return redirect()->route('videos.show', $this->id);
 
             }else{
 
