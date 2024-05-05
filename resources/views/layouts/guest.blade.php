@@ -17,15 +17,15 @@
 <body>
 <main>
     <div class="flex flex-col min-h-screen max-w-6xl mx-auto p-4">
-        <div class="grid md:grid-cols-5 items-center mb-10 mt-20">
-            <div class="md:col-start-3 ">
+
+            <div class="mx-auto m-20 ">
                 <div class="mt-5">
                     <a href="/">
                       <x-application-logo class="h-30 fill-current text-gray-500" />
                     </a>
                 </div>
             </div>
-        </div>
+
 
           {{ $slot }}
 
