@@ -20,12 +20,14 @@ class Edit extends Component
 
     public $folders;
 
+    public $video;
+
 
     public function mount(int|string $id)
     {
-        $video = Video::findOrFail($id);
+        $this->video = Video::findOrFail($id);
 
-        $this->form->setVideo($video);
+        $this->form->setVideo($this->video);
 
         $this->folders = Folder::all();
 

@@ -2,7 +2,6 @@
 
 namespace App\Livewire\Forms;
 
-use App\Models\Folder;
 use Illuminate\Validation\Rule;
 use Livewire\Attributes\Validate;
 use Livewire\Form;
@@ -15,19 +14,26 @@ class VideoForm extends Form
 
     public $name = '';
 
-    public $folder;
+    public $folder = '';
 
     public function rules()
     {
-        return [
-            'name' => [
-                'required',
-                Rule::unique('videos')->ignore($this->video),
-            ],
-            'folder' => 'required',
-        ];
-    }
 
+        $rules = [];
+
+        if(isset($this->name)){
+            $rules['name'] = ['required','string', Rule::unique('videos')->ignore($this->video)];
+            $rules['folder'] = ['required'];
+
+        }else{
+            $rules['name'] = ['required', 'string', Rule::unique('users', 'name')];
+            $rules['folder'] = ['required'];
+        }
+
+
+        return $rules;
+
+    }
 
     public function setVideo(Video $video)
     {
