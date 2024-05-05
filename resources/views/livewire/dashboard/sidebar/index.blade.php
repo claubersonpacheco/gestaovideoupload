@@ -24,7 +24,7 @@
                     </svg>
                 </li>
                 <li class="text-sm font-semibold text-gray-800 truncate dark:text-gray-400" aria-current="page">
-                    Admin
+                    Dashboard
                 </li>
             </ol>
             <!-- End Breadcrumb -->
@@ -35,7 +35,7 @@
     <!-- Sidebar -->
     <div id="application-sidebar-dark" class="hs-overlay [--auto-close:lg] hs-overlay-open:translate-x-0 -translate-x-full transition-all duration-300 transform hidden fixed top-0 start-0 bottom-0 z-[60] w-64 bg-gray-900 border-e border-gray-800 pt-7 pb-10 overflow-y-auto lg:block lg:translate-x-0 lg:end-auto lg:bottom-0 [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-thumb]:bg-gray-300 dark:[&::-webkit-scrollbar-track]:bg-neutral-700 dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500">
         <div class="px-6">
-            <a class="flex-none text-xl font-semibold text-white" href="#" aria-label="Brand">
+            <a class="flex-none text-xl font-semibold text-white" href="{{ route('dashboard.index') }}" aria-label="Brand">
                 @if(setting()->logo)
                     <img class="w-full rounded-md" src="{{ asset('storage/images/logo/'.setting()->logo) }}"
                          alt="{{ setting()->name }}">
@@ -95,6 +95,9 @@
                         </a>
                     </li>
                 @endcan
+                    <li>
+                        <hr />
+                    </li>
                 @can('videos.index')
                     <li class="hs-accordion" id="users-accordion">
                         <button type="button" class="hs-accordion-toggle w-full text-start flex items-center gap-x-3.5 py-2 px-2.5 hs-accordion-active:text-white hs-accordion-active:hover:bg-transparent text-sm text-gray-400 rounded-lg hover:bg-gray-800 hover:text-white focus:outline-none focus:ring-1 focus:ring-gray-600">
@@ -157,8 +160,6 @@
                     </li>
 
                 @endcan
-
-
                 @can('categories.index')
                     <li>
                         <a class="w-full flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-white hover:text-white rounded-lg hover:bg-blue-600-300"
@@ -170,7 +171,6 @@
                         </a>
                     </li>
                 @endcan
-
                 @can('courses.index')
                     <li>
                         <a class="w-full flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-white hover:text-white rounded-lg hover:bg-blue-600-300"
@@ -188,7 +188,6 @@
                     <hr/>
                 </li>
                 @role('master')
-
                 <li>
                     <a class="w-full flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-white hover:text-white rounded-lg hover:bg-blue-600-300"
                        href="{{ route('roles.index') }}">
@@ -200,7 +199,6 @@
                         {{ __('Roles') }}
                     </a>
                 </li>
-
                 <li>
                     <a class="w-full flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-white hover:text-white rounded-lg hover:bg-blue-600-300"
                        href="{{ route('permissions.index') }}">
@@ -210,7 +208,6 @@
                         {{ __('Permissions') }}
                     </a>
                 </li>
-
                 <li>
                     <a class="w-full flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-white hover:text-white rounded-lg hover:bg-blue-600-300"
                        href="{{ route('setting.edit', '1') }}">
@@ -224,8 +221,6 @@
                         Config
                     </a>
                 </li>
-
-
                 @endrole
 
             </ul>
