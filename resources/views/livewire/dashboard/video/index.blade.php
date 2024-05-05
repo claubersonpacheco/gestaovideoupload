@@ -38,6 +38,9 @@
                                 <p class="text-sm text-gray-600 dark:text-gray-400">
                                     Add videos, edit and more.
                                 </p>
+                                <p class="text-sm text-gray-600 dark:text-gray-400">
+                                    Total: {{ $count }}
+                                </p>
                             </div>
 
                             <div>

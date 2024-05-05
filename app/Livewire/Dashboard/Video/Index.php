@@ -15,11 +15,14 @@ class Index extends Component
 
     public $search = '';
 
+    public $count = 0;
+
     public $perPage = 25;
 
     #[Title('List Videos')]
     public function render()
     {
+
         return view('livewire.dashboard.video.index', [
             'videos' => Video::search($this->search)->latest()->paginate($this->perPage)
         ]);
