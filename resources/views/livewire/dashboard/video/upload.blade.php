@@ -141,12 +141,6 @@
                 </div>
             </form>
 
-
-            <div class="sm:col-span-3 space-y-4 mt-6">
-
-                <livewire:dashboard.video.listen-websocket :videoid="$id"/>
-
-            </div>
         </div>
         <!-- End Card -->
     </div>
