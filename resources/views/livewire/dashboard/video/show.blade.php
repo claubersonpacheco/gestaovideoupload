@@ -14,7 +14,7 @@
         </a>
     </li>
     <li class="inline-flex items-center text-sm font-semibold text-gray-800 truncate dark:text-gray-200" aria-current="page">
-        Show
+        {{ $video->name }}
     </li>
 </ol>
 <!--end Breadcrumb-->
@@ -27,8 +27,8 @@
         <!-- Page Heading -->
         <header class="mb-10 px-0 py-4 grid gap-3 md:flex md:justify-between md:items-center border-b border-gray-200 dark:border-gray-700">
             <div>
-                <p class="mb-2 text-sm font-semibold text-blue-600">Video</p>
-                <h1 class="block text-2xl font-bold text-gray-800 sm:text-3xl dark:text-white">{{ __('Show Video') }}</h1>
+                <p class="mb-2 text-sm font-semibold text-blue-600">{{ __('Show Video') }}</p>
+                <h1 class="block text-2xl font-bold text-gray-800 sm:text-3xl dark:text-white">{{ $video->name }}</h1>
             </div>
             <div>
                 <div class="inline-flex gap-x-2">
