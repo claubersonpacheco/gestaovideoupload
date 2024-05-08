@@ -212,6 +212,20 @@
                                     <td class="h-px w-px whitespace-nowrap">
                                         <div class="px-6 py-1.5">
 
+                                            <button
+                                                wire:click="$dispatch('openModal', { component: 'dashboard.video.embed', arguments: { videoid: {{ $video->id }} }  })"
+                                               class="inline-flex items-center gap-x-1 text-sm text-blue-600 decoration-2 hover:underline font-medium dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
+                                                <!-- Icon -->
+                                                <span class="m-1 inline-flex justify-center items-center w-[46px] h-[46px] rounded-full border-4 border-gray-50 bg-gray-200 text-gray-800 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-200">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75 22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3-4.5 16.5" />
+</svg>
+
+
+                                                </span>
+                                                <!-- End Icon -->
+                                            </button>
+
                                             @if($video->file_path != "")
                                                 <a href="{{ route('videos.show', $video->id) }}"
                                                    class="inline-flex items-center gap-x-1 text-sm text-blue-600 decoration-2 hover:underline font-medium dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">

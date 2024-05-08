@@ -6,7 +6,6 @@ use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\Validator;
-use Livewire\Attributes\Validate;
 use Illuminate\Validation\Rules\Password;
 use Livewire\Form;
 use Closure;

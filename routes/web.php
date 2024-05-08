@@ -43,6 +43,7 @@ Route::prefix('dashboard')->middleware(['auth', 'verified'])->group(function () 
     Route::get('/videos', \App\Livewire\Dashboard\Video\Index::class)->middleware('can:videos.index')->name('videos.index');
 
     //User
+    Route::get('/users/{id}/password', \App\Livewire\Dashboard\User\Password::class )->middleware('can:users.password')->name('users.password');
     Route::get('/users/{id}/role', \App\Livewire\Dashboard\User\RoleUser\UserRole::class )->middleware('can:users.role')->name('users.role');
     Route::get('/users/{id}/edit', App\Livewire\Dashboard\User\Edit::class )->middleware('can:users.edit')->name('users.edit');
     Route::get('/users/create', App\Livewire\Dashboard\User\Create::class)->middleware('can:users.create')->name('users.create');
