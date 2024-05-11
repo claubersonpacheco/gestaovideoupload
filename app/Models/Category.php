@@ -19,6 +19,13 @@ class Category extends Model
         return  $this->hasMany(Course::class);
     }
 
+    public function scopeSearch($query, $value)
+    {
+        $query->where('name', 'like', "%{$value}%")
+            ->orWhere('description', 'like', "%{$value}%");
+
+    }
+
     public function getApiMoodleData()
     {
         $apiDatos = Setting::all();

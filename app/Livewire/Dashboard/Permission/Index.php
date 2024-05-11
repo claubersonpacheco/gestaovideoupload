@@ -2,10 +2,13 @@
 
 namespace App\Livewire\Dashboard\Permission;
 
+use App\Models\Permission;
+use App\Models\Role;
+use Livewire\Attributes\On;
 use Livewire\Attributes\Title;
 use Livewire\Component;
 use Livewire\WithPagination;
-use Spatie\Permission\Models\Permission;
+
 
 class Index extends Component
 {
@@ -13,7 +16,14 @@ class Index extends Component
 
     public $search = '';
 
-    public $perPage = 15;
+    public $count;
+    public $perPage = 25;
+
+    #[On('searchData')]
+    public function search($searchTerm)
+    {
+        $this->search = $searchTerm;
+    }
 
     public function delete($id)
     {
@@ -29,8 +39,11 @@ class Index extends Component
     #[Title('List Roles')]
     public function render()
     {
+
+        $this->count = Permission::count();
+
         return view('livewire.dashboard.permission.index', [
-            'datos' => Permission::latest()->paginate($this->perPage)
+            'datas' => Permission::search($this->search)->latest()->paginate($this->perPage)
         ]);
     }
 

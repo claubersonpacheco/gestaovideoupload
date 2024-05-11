@@ -3,6 +3,7 @@
 namespace App\Livewire\Dashboard\Course;
 
 use App\Models\Course;
+use Livewire\Attributes\On;
 use Livewire\Component;
 use Livewire\WithPagination;
 class Index extends Component
@@ -11,7 +12,15 @@ class Index extends Component
 
     public $search = '';
 
-    public $perPage = 15;
+    public $count;
+
+    public $perPage = 25;
+
+    #[On('searchData')]
+    public function search($searchTerm)
+    {
+        $this->search = $searchTerm;
+    }
 
     public function delete($id)
     {
@@ -51,8 +60,10 @@ class Index extends Component
     }
     public function render()
     {
+        $this->count = Course::count();
+
         return view('livewire.dashboard.course.index', [
-            'datos' => Course::latest()->paginate($this->perPage),
+            'datas' => Course::search($this->search)->latest()->paginate($this->perPage),
         ]);
     }
 }

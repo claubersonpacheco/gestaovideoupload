@@ -3,10 +3,11 @@
 namespace App\Livewire\Dashboard\Role;
 
 use App\Models\User;
+use Livewire\Attributes\On;
 use Livewire\Attributes\Title;
 use Livewire\Component;
 use Livewire\WithPagination;
-use Spatie\Permission\Models\Role;
+use App\Models\Role;
 
 
 class Index extends Component
@@ -15,7 +16,14 @@ class Index extends Component
 
     public $search = '';
 
-    public $perPage = 15;
+    public $count;
+    public $perPage = 25;
+
+    #[On('searchData')]
+    public function search($searchTerm)
+    {
+        $this->search = $searchTerm;
+    }
 
     public function delete($id)
     {
@@ -31,8 +39,10 @@ class Index extends Component
     #[Title('List Roles')]
     public function render()
     {
+        $this->count = Role::count();
+
         return view('livewire.dashboard.role.index', [
-            'datos' => Role::latest()->paginate($this->perPage)
+            'datas' => Role::search($this->search)->latest()->paginate($this->perPage)
         ]);
     }
 

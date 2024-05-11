@@ -4,6 +4,7 @@ namespace App\Livewire\Dashboard\Category;
 
 use App\Models\Category;
 use GuzzleHttp\Exception\GuzzleException;
+use Livewire\Attributes\On;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -14,6 +15,15 @@ class Index extends Component
     public $search = '';
 
     public $perPage = 15;
+
+    public $count;
+
+    #[On('searchData')]
+    public function search($searchTerm)
+    {
+        $this->search = $searchTerm;
+
+    }
 
     public function delete($id)
     {
@@ -39,9 +49,10 @@ class Index extends Component
 
     public function render()
     {
+        $this->count = Category::count();
 
         return view('livewire.dashboard.category.index', [
-            'datos' => Category::latest()->paginate($this->perPage),
+            'datas' => Category::search($this->search)->latest()->paginate($this->perPage),
         ]);
     }
 

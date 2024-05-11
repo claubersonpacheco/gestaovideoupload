@@ -8,15 +8,17 @@ use Livewire\Attributes\Title;
 use Livewire\Component;
 use Livewire\WithPagination;
 
+#[Title('List Users')]
 class Index extends Component
 {
     use WithPagination;
+    public $perPage = 25;
 
     public $search = '';
 
-    public $perPage = 15;
-
     public $status;
+
+    public $count;
 
     public function delete(User $user)
     {
@@ -45,13 +47,22 @@ class Index extends Component
         }
     }
 
-    #[Title('List Users')]
+    #[On('searchData')]
+    public function search($searchTerm)
+    {
+        $this->search = $searchTerm;
+    }
+
     #[On('ListUsers')]
     public function render()
     {
-        return view('livewire.dashboard.user.index', [
-            'datos' => User::search($this->search)->latest()->paginate($this->perPage)
-        ]);
+
+        $this->count = User::count();
+
+            return view('livewire.dashboard.user.index', [
+                'datas' => User::search($this->search)->latest()->paginate($this->perPage)
+            ]);
+
     }
 
     public function changeStatus($id)
@@ -66,7 +77,6 @@ class Index extends Component
         $user->save();
 
         $this->dispatch('ListUsers');
-
 
     }
 

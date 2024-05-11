@@ -2,6 +2,9 @@
 
 namespace App\Models;
 
+use App\Models\Traits\CreatedAt;
+use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -11,12 +14,19 @@ use GuzzleHttp\Client;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Spatie\Permission\Models\Role;
 
+
 class Course extends Model
 {
-    use HasFactory;
+    use HasFactory, CreatedAt;
 
     protected $guarded;
 
+    protected function startdate(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($value) => Carbon::make($value)->format('d/m/Y H:i:s'),
+        );
+    }
     public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class);
@@ -27,6 +37,12 @@ class Course extends Model
         return  $this->belongsToMany(User::class);
     }
 
+    public function scopeSearch($query, $value)
+    {
+        $query->where('fullname', 'like', "%{$value}%")
+            ->orWhere('shortname', 'like', "%{$value}%");
+
+    }
 
     public static function findAllCourses(): array
     {

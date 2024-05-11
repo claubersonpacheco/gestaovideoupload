@@ -94,7 +94,6 @@ class Video extends Model
 
     }
 
-
     public function uploadVideoFromBunny($guid, $url)
     {
         $setup = Setting::find('1');
