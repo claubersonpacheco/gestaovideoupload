@@ -4,6 +4,7 @@ namespace App\Livewire\Dashboard\Video;
 
 use App\Models\Video;
 use Livewire\Attributes\Layout;
+use Livewire\Attributes\On;
 use Livewire\Attributes\Title;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -19,13 +20,19 @@ class Index extends Component
 
     public $perPage = 25;
 
+    #[On('searchData')]
+    public function search($searchTerm)
+    {
+        $this->search = $searchTerm;
+    }
+
     #[Title('List Videos')]
     public function render()
     {
         $this->count = Video::count();
 
         return view('livewire.dashboard.video.index', [
-            'videos' => Video::search($this->search)->latest()->paginate($this->perPage)
+            'datas' => Video::search($this->search)->latest()->paginate($this->perPage)
         ]);
     }
 

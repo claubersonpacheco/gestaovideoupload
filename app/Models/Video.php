@@ -17,6 +17,13 @@ class Video extends Model
 
     protected $guarded;
 
+    public function scopeSearch($query, $value)
+    {
+        $query->where('name', 'like', "%{$value}%")
+            ->orWhere('description', 'like', "%{$value}%");
+
+    }
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
@@ -26,12 +33,6 @@ class Video extends Model
     public function folder(): BelongsTo
     {
         return $this->belongsTo(Folder::class);
-    }
-
-    public function scopeSearch($query, $value)
-    {
-        $query->where('name', 'like', "%{$value}%")->orWhere('file_path', 'like', "%{$value}%");
-
     }
 
     public function createVideoInBunny($title){

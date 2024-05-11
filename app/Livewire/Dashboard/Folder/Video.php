@@ -4,26 +4,18 @@ namespace App\Livewire\Dashboard\Folder;
 
 use App\Models\Folder;
 use App\Models\Video as ModelVideo;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Livewire\Component;
 
 class Video extends Component
 {
-    public $videos;
+    public $datas;
 
-    public $folder;
+    public $count;
 
     public $id;
 
-    public function mount(int $id): void
-    {
-        $folder = Folder::findOrFail($id);
-
-        $this->folder = $folder;
-
-        $videos = $folder->videos()->orderBy('created_at', 'desc')->get();
-
-        $this->videos = $videos;
-    }
+    public $perpage = 25;
 
     public function delete($id)
     {
@@ -41,6 +33,8 @@ class Video extends Component
 
     public function render()
     {
+        $this->datas = Folder::with('videos')->find($this->id);
+
         return view('livewire.dashboard.folder.video');
     }
 }
