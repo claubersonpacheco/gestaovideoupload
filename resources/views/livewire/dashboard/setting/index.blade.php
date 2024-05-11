@@ -1,22 +1,7 @@
 <div>
 
-    <!--Breadcrumb-->
-    <ol class="flex items-center whitespace-nowrap" aria-label="Breadcrumb">
-        <li class="inline-flex items-center">
-            <a class="flex items-center text-sm text-gray-500 hover:text-blue-600 focus:outline-none focus:text-blue-600 dark:focus:text-blue-500" href="{{ route('dashboard.index') }}">
-                Home
-            </a>
-            <svg class="flex-shrink-0 mx-2 overflow-visible h-4 w-4 text-gray-400 dark:text-neutral-600" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
-        </li>
-        <li class="inline-flex items-center">
-            <a class="flex items-center text-sm text-gray-500 hover:text-blue-600 focus:outline-none focus:text-blue-600 dark:focus:text-blue-500" href="#">
-                Set Up
-                <svg class="flex-shrink-0 mx-2 overflow-visible h-4 w-4 text-gray-400 dark:text-neutral-600" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
-            </a>
-        </li>
-
-    </ol>
-    <!--end Breadcrumb-->
+    <<div class="w-full lg:ps-64">
+        <div class="p-4 sm:p-6 space-y-4 sm:space-y-6">
 
     <!-- Card Section -->
     <div class="max-w-full  py-5 sm:px-6 lg:px-1 lg:py-7 mx-auto">
@@ -64,7 +49,7 @@
 
                         @if($data->logo)
                             <div class="relative inline-block">
-                                <img class="inline-block size-[80px] rounded-full" src="{{ asset('storage/images/logo/'.$data->logo) }}" alt="{{ $data->name }}">
+                                <img class="inline-block size-[100px] rounded-full thumb" src="{{ asset('storage/images/logo/'.$data->logo) }}" alt="{{ $data->name }}">
                                 <span wire:click="deleteImage({{ $data->id }})" class="absolute bottom-0 end-0 block size-3.5">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
@@ -230,4 +215,6 @@
         <!-- End Card -->
     </div>
     <!-- End Card Section -->
+        </div>
+    </div>
 </div>

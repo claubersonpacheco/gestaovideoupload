@@ -21,31 +21,6 @@
 
 </head>
 <body class="bg-gray-300 dark:bg-neutral-800">
-{{--<body class="bg-gray-50 dark:bg-slate-900">--}}
-{{--<!-- ========== HEADER ========== -->--}}
-{{--@include('layouts.header')--}}
-{{--<!-- ========== END HEADER ========== -->--}}
-
-{{--<!-- ========== MAIN CONTENT ========== -->--}}
-{{--@livewire('dashboard.sidebar.index')--}}
-
-{{--<!-- Content -->--}}
-{{--<main>--}}
-
-{{--    <!-- Content -->--}}
-{{--    <div class="w-full lg:ps-64">--}}
-{{--        <div class="p-4 sm:p-6 space-y-4 sm:space-y-6">--}}
-{{--            {{ $slot }}--}}
-{{--        </div>--}}
-{{--    </div>--}}
-{{--    <!-- End Content -->--}}
-
-{{--</main>--}}
-{{--<!-- End Content -->--}}
-
-{{--@livewire('wire-elements-modal')--}}
-
-
 
 <!-- ========== HEADER ========== -->
 @include('layouts.header')
@@ -89,6 +64,8 @@
 {{ $slot }}
 <!-- End Content -->
 <!-- ========== END MAIN CONTENT ========== -->
+
+@livewire('wire-elements-modal')
 
 </body>
 </html>

@@ -1,4 +1,5 @@
 <div>
+
             <form wire:submit.prevent="updatePhoto">
             <div class="absolute top-2 end-2">
                 <button wire:click="resetInput()" type="button" class="flex justify-center items-center size-7 text-sm font-semibold rounded-lg border border-transparent text-gray-800 hover:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none dark:text-white dark:border-transparent dark:hover:bg-gray-700">
