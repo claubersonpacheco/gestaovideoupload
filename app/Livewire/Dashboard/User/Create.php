@@ -9,14 +9,11 @@ class Create extends Component
 {
 
     public UserForm $form;
-    public function save()
-    {
-         $this->form->store();
-    }
-    public function cancel()
-    {
-        return redirect()->route('users.index');
-    }
+
+    public $action = 'store';
+    public $title = 'Create User';
+    public $data = null;
+
     public function render()
     {
         return view('livewire.dashboard.user.create');

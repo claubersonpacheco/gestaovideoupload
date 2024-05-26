@@ -18,6 +18,9 @@ class Edit extends Component
 
     public $data;
 
+    public $action;
+    public $title;
+
     #[On('updatePhoto')]
     public function mount($id):void
     {
@@ -27,10 +30,9 @@ class Edit extends Component
 
         $this->data = $data;
 
-    }
-    public function save():void
-    {
-        $this->form->update();
+        $this->action = 'update';
+        $this->title = 'Edit User';
+
     }
 
     public function deletePhoto(User $user):void
@@ -43,7 +45,7 @@ class Edit extends Component
 
         if($verifica === true){
 
-           Storage::disk('public')->delete([$rota]);
+            Storage::disk('public')->delete([$rota]);
 
             $user->update(
                 ['photo' => '']
@@ -59,11 +61,6 @@ class Edit extends Component
 
 
     }
-    public function cancel()
-    {
-        return redirect()->route('users.index');
-    }
-
 
     public function render()
     {

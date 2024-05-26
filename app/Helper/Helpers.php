@@ -13,3 +13,18 @@ if (!function_exists('setting')){
 
 }
 
+if (!function_exists('authenticMoodle')) {
+    function authenticMoodle($username, $password)
+    {
+        $usuario = new \App\Models\User();
+
+        $user = $username;
+        $pass = $password;
+
+        $usuario->userAuthenticate($user, $pass);
+
+        return $usuario;
+
+    }
+}
+

@@ -23,7 +23,7 @@
 <body class="bg-gray-300 dark:bg-neutral-800">
 
 <!-- ========== HEADER ========== -->
-@include('layouts.header')
+<livewire:partials.header />
 <!-- ========== END HEADER ========== -->
 
 <!-- ========== MAIN CONTENT ========== -->

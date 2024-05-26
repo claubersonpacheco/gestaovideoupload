@@ -16,15 +16,33 @@ class UserForm extends Form
     public ?User $user;
 
     public $name = '';
+    public $lastname = '';
+    public $birthday = '';
 
     public $username = '';
-    public $lastname = '';
 
     public $email = '';
 
     public $password = '';
 
+    public $password_confirmation = '';
+    public $phone = '';
+    public $mobile = '';
+    public $rg = '';
+    public $cpf = '';
+    public $address = '';
+    public $number = '';
+    public $district = '';
+    public $city = '';
+    public $postalcode = '';
+    public $graduation = '';
+    public $graduationstatus = '';
+    public $graduationarea = '';
+    public $posgraduation = '';
+    public $profesion = '';
+    public $recomendation = '';
 
+    public $observation = '';
     public $campo;
 
     public $message;
@@ -35,16 +53,32 @@ class UserForm extends Form
         $rules = [
             'name' => ['required', 'min:3'],
             'lastname' => ['required', 'min:3'],
-            'password' => ['nullable', Password::min('8')->mixedCase()->uncompromised()->symbols()]
+            'birthday' => ['required','date'],
+            'phone' => ['required','max:15'],
+            'mobile' => ['required','max:15'],
+            'rg' => ['nullable', 'string', 'max:15' ],
+            'address' => ['required', 'max: 50'],
+            'number' => [ 'required', 'max:8'],
+            'district' => [ 'required','max: 30'],
+            'city' => [ 'required','max: 50'],
+            'postalcode' => ['required', 'max: 10'],
+            'graduation' => ['required','max: 50'],
+            'graduationstatus' => ['required', 'max: 15'],
+            'graduationarea' => ['required'],
+            'posgraduation' => ['max: 30'],
+            'profesion' => ['required', 'max: 50'],
+            'recomendation' => ['required'],
+            'observation' => ['nullable', 'max: 500'],
         ];
 
         if(isset($this->user)){
-            $rules['username'] = ['required','string', 'regex:/^\S*$/', 'max:2048', Rule::unique('users', 'username')->ignore($this->user)];
             $rules['email'] = ['required',  'lowercase', Rule::unique('users', 'email')->ignore($this->user)];
+            $rules['cpf'] = ['required', 'max:14', Rule::unique('users', 'cpf')->ignore($this->user)];
 
         }else{
-            $rules['username'] = ['required', 'string', 'regex:/^\S*$/', 'max:2048', Rule::unique('users', 'username')];
             $rules['email'] = ['required',  'lowercase', Rule::unique('users', 'email')];
+            $rules['password'] = ['required', Password::min('8')->mixedCase()->uncompromised()->symbols()];
+            $rules['cpf'] = ['required', 'max:14', Rule::unique('users', 'cpf')];
         }
 
 
@@ -61,16 +95,33 @@ class UserForm extends Form
         $this->email = $user->email;
         $this->username = $user->username;
         $this->lastname = $user->lastname;
+        $this->birthday = $user->birthday;
+        $this->phone = $user->phone ;
+        $this->mobile = $user->mobile;
+        $this->rg = $user->rg;
+        $this->cpf = $user->cpf;
+        $this->address = $user->address;
+        $this->number = $user->number;
+        $this->district = $user->district;
+        $this->city = $user->city;
+        $this->postalcode = $user->postalcode;
+        $this->graduation = $user->graduation;
+        $this->graduationstatus = $user->graduationstatus;
+        $this->graduationarea = $user->graduationarea;
+        $this->posgraduation = $user->posgraduation;
+        $this->profesion = $user->profesion;
+        $this->recomendation = $user->recomendation;
+        $this->observation = $user->observation;
 
 
     }
-
     public function createUser()
     {
         $createUserMoodle = new User();
 
+        //create user in moodle
         $resCreate = $createUserMoodle->createUserMoodle(
-            $this->username,
+            $this->formatUsername($this->cpf),
             $this->password,
             $this->name,
             $this->lastname,
@@ -79,13 +130,31 @@ class UserForm extends Form
 
         if(isset($resCreate[0]->id)){
 
+            //create user in system
             $user = User::create([
                     'name' => $this->name,
                     'email' => $this->email,
                     'mcode' => $resCreate[0]->id,
-                    'username' => $this->username,
+                    'username' => $this->formatUsername($this->cpf),
                     'lastname' => $this->lastname,
                     'password' => Hash::make($this->password),
+                    'birthday' => $this->birthday,
+                    'phone' => $this->phone,
+                    'mobile' => $this->mobile,
+                    'rg' => $this->rg,
+                    'cpf' => $this->cpf,
+                    'address' => $this->address,
+                    'number' => $this->number,
+                    'district' => $this->district,
+                    'city' => $this->city,
+                    'postalcode' => $this->postalcode,
+                    'graduation' => $this->graduation,
+                    'graduationstatus' => $this->graduationstatus,
+                    'graduationarea' => $this->graduationarea,
+                    'posgraduation' => $this->posgraduation,
+                    'profesion' => $this->profesion,
+                    'recomendation' => $this->recomendation,
+                    'observation' => $this->observation,
                 ]
             );
 
@@ -96,11 +165,20 @@ class UserForm extends Form
             return redirect()->route('users.index');
         }else{
 
-            toastr()->error('Esso ao criar Usuario!');
+            toastr()->error('Erro ao criar Usuario!');
         };
 
 
 
+    }
+
+    private function formatUsername($data)
+    {
+        // Remove qualquer não dígito
+        $data = preg_replace('/\D/', '', $data);
+
+        // Aplica a máscara
+        return preg_replace('/(\d{3})(\d{3})(\d{3})(\d{2})/', '$1$2$3$4', $data);
     }
 
     public function validaCampo($campo, $message)
@@ -141,6 +219,7 @@ class UserForm extends Form
                     }else{
 
                         $this->createUser();
+
                     }
 
         }else{
@@ -157,16 +236,72 @@ class UserForm extends Form
 
         $this->user->update(
                 [
+                    'username' => $this->formatUsername($this->cpf),
                     'name' => $this->name,
-                    'email' => $this->email,
-                    'username' => $this->username,
                     'lastname' => $this->lastname,
+                    'email' => $this->email,
+                    'birthday' => $this->birthday,
+                    'phone' => $this->phone,
+                    'mobile' => $this->mobile,
+                    'rg' => $this->rg,
+                    'cpf' => $this->cpf,
+                    'address' => $this->address,
+                    'number' => $this->number,
+                    'district' => $this->district,
+                    'city' => $this->city,
+                    'postalcode' => $this->postalcode,
+                    'graduation' => $this->graduation,
+                    'graduationstatus' => $this->graduationstatus,
+                    'graduationarea' => $this->graduationarea,
+                    'posgraduation' => $this->posgraduation,
+                    'profesion' => $this->profesion,
+                    'recomendation' => $this->recomendation,
+                    'observation' => $this->observation,
+
                 ]
         );
 
         toastr()->success('Atualizado com sucesso!');
 
-        return redirect()->route('users.index');
+        return redirect()->route('users.edit', $this->user->id);
+
+    }
+
+    public function profile()
+    {
+
+        $this->validate();
+
+        $this->user->update(
+            [
+                'username' => $this->formatUsername($this->cpf),
+                'name' => $this->name,
+                'lastname' => $this->lastname,
+                'email' => $this->email,
+                'birthday' => $this->birthday,
+                'phone' => $this->phone,
+                'mobile' => $this->mobile,
+                'rg' => $this->rg,
+                'cpf' => $this->cpf,
+                'address' => $this->address,
+                'number' => $this->number,
+                'district' => $this->district,
+                'city' => $this->city,
+                'postalcode' => $this->postalcode,
+                'graduation' => $this->graduation,
+                'graduationstatus' => $this->graduationstatus,
+                'graduationarea' => $this->graduationarea,
+                'posgraduation' => $this->posgraduation,
+                'profesion' => $this->profesion,
+                'recomendation' => $this->recomendation,
+                'observation' => $this->observation,
+
+            ]
+        );
+
+        toastr()->success('Atualizado com sucesso!');
+
+        return redirect()->route('users.edit', $this->user->id);
 
     }
 

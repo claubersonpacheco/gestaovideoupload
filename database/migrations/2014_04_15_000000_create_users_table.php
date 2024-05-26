@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('lastname')->nullable();
             $table->string('username');
             $table->string('suspended')->default('0');
-            $table->date('birth')->nullable();
+            $table->date('birthday')->nullable();
             $table->string('rg')->nullable();
             $table->string('cpf');
             $table->string('address')->nullable();
@@ -29,10 +29,10 @@ return new class extends Migration
             $table->string('mobile')->nullable();
             $table->string('phone')->nullable();
             $table->string('graduation')->nullable();
-            $table->string('statusgraduation')->nullable();
-            $table->string('areagraduation')->nullable();
+            $table->string('graduationstatus')->nullable();
+            $table->string('graduationarea')->nullable();
             $table->string('posgraduation')->nullable();
-            $table->string('profesional')->nullable();
+            $table->string('profesion')->nullable();
             $table->string('recomendation')->nullable();
             $table->text('observation')->nullable();
             $table->string('email')->unique();

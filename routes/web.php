@@ -43,6 +43,7 @@ Route::prefix('dashboard')->middleware(['auth', 'verified'])->group(function () 
     Route::get('/videos', \App\Livewire\Dashboard\Video\Index::class)->middleware('can:videos.index')->name('videos.index');
 
     //User
+    Route::get('/auth-moodle', \App\Livewire\Partials\AuthMoodle::class )->name('auth.moodle');
     Route::get('/users/{id}/password', \App\Livewire\Dashboard\User\Password::class )->middleware('can:users.password')->name('users.password');
     Route::get('/users/{id}/role', \App\Livewire\Dashboard\User\RoleUser\UserRole::class )->middleware('can:users.role')->name('users.role');
     Route::get('/users/{id}/edit', App\Livewire\Dashboard\User\Edit::class )->middleware('can:users.edit')->name('users.edit');
@@ -55,7 +56,7 @@ Route::prefix('dashboard')->middleware(['auth', 'verified'])->group(function () 
 
 
     //profile
-    Route::get('/profile', [ProfileController::class, 'edit'])->middleware('can:profile.edit')->name('profile.edit');
+    Route::get('/profile', App\Livewire\Dashboard\User\Profile::class)->middleware('can:profile.edit')->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->middleware('can:profile.update')->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->middleware('can:profile.destroy')->name('profile.destroy');
 

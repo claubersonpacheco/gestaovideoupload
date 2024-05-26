@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Models\Traits\CreatedAt;
 use GuzzleHttp\Client;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -11,11 +11,12 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Session;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Traits\HasRoles;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens, HasFactory, Notifiable;
     use CreatedAt;
@@ -42,7 +43,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $hidden = [
-        'password',
+//        'password',
         'remember_token',
     ];
 
@@ -184,6 +185,28 @@ class User extends Authenticatable
         $resultado = json_decode($result->getBody()->getContents());
 
         return $resultado;
+    }
+
+    public function userAuthenticate($username, $password){
+
+        $client = new Client();
+
+
+        $resultado = $client->request('GET', 'https://ava.institutodeinteligencia.com.br/login/token.php', [
+            'query' => [
+                'username' => $username,
+                'password' => $password,
+                'service' => 'moodle_mobile_app',
+            ]
+        ]);
+
+        $resultado = json_decode($resultado->getBody()->getContents());
+
+        Session::put('token', $resultado->token);
+
+        return $resultado;
+
+
     }
 
 }

@@ -21,7 +21,7 @@ class AdminTableSeeder extends Seeder
             'email' => 'admin@gmail.com',
             'email_verified_at' => now(),
             'password' => Hash::make('password'),
-            'birth' => '1977-01-18',
+            'birthday' => '1977-01-18',
             'rg' => '6.470.098-7',
             'cpf' => '123.456.789-00',
             'address' => 'Rua 0001',
