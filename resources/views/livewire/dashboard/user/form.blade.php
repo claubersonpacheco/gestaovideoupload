@@ -2,16 +2,25 @@
     <!--form-->
     <form wire:submit.prevent="{{ $action }}">
         <!-- Grid -->
-        @can('user.username')
-        <div class="grid gap-6 mb-6 md:grid-cols-5">
-            <div class="col-span-2">
-                <label for="username" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('Username') }}</label>
-                <input wire:model="form.username" type="text" id="first_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="John"  />
-                <x-input-error class="mt-2" :messages="$errors->get('form.username')" />
-            </div>
-        </div>
-        @endcan
 
+
+
+        @if (Auth::user()->can(['master', 'manager'], $data))
+            <div class="grid gap-6 mb-6 md:grid-cols-5">
+                <div class="col-span-2">
+                    <label for="username" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('Username') }}</label>
+                    <input wire:model="form.username" type="text" id="first_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Username"  />
+                    <x-input-error class="mt-2" :messages="$errors->get('form.username')" />
+                </div>
+            </div>
+        @else
+            <div class="grid gap-6 mb-6 md:grid-cols-5">
+                <div class="col-span-2">
+                    <label for="username" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('Username') }}</label>
+                    <input type="text" value="{{ $data->username }}" disabled class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+                </div>
+            </div>
+        @endif
 
         <div class="grid gap-6 mb-6 md:grid-cols-5">
 
