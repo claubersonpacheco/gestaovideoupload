@@ -301,7 +301,7 @@ class UserForm extends Form
 
         toastr()->success('Atualizado com sucesso!');
 
-        return redirect()->route('users.edit', $this->user->id);
+        return redirect()->route('profile.edit');
 
     }
 
