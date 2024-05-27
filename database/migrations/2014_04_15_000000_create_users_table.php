@@ -25,7 +25,7 @@ return new class extends Migration
             $table->string('district')->nullable();
             $table->string('city')->nullable();
             $table->string('mcode')->nullable();
-            $table->string('codepostal')->nullable();
+            $table->string('postalcode')->nullable();
             $table->string('mobile')->nullable();
             $table->string('phone')->nullable();
             $table->string('graduation')->nullable();
