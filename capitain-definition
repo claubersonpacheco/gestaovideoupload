@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 2,
+  "templateId": "php/8.2",
+  "dockerfilePath": "",
+  "volumes": [
+    {
+      "containerPath": "/var/www/html/storage",
+      "hostPath": "/captain/data/gestaoidi-storage"
+    }
+  ],
+  "preDeployFunction": "php artisan migrate --force"
+}
